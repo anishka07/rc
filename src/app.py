@@ -1,11 +1,17 @@
 import streamlit as st
 from pypdf import PdfReader
 import pickle
+import os 
 
 from settings import Settings, text_transform, clean_resume
 
-model = pickle.load(open("/Users/anishkamukherjee/Documents/resume_classifier/models/model.pkl", "rb"))
-vectorizer = pickle.load(open("/Users/anishkamukherjee/Documents/resume_classifier/models/vectorizer.pkl", "rb"))
+src_dir = os.path.abspath(os.getcwd())
+project_root = os.path.dirname(src_dir)
+model_pkl_path = os.path.join(project_root, "models/model.pkl")
+vectorizer_pkl_path = os.path.join(project_root, "models/vectorizer.pkl")
+
+model = pickle.load(open(model_pkl_path, "rb"))
+vectorizer = pickle.load(open(vectorizer_pkl_path, "rb"))
 
 def main():
     st.title("Resume Classifier")
