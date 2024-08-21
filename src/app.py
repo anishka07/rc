@@ -1,11 +1,16 @@
-import streamlit as st
 from pypdf import PdfReader
+import streamlit as st
+import pickle
+import sys
+import os
 
-from settings import Settings, text_transform, clean_resume
-from paths import Paths
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-vectorizer = Paths.GET_VECTORIZER_PKL
-model = Paths.GET_MODEL_PKL
+from utils.settings import clean_resume, text_transform, Settings
+from utils.paths import Paths
+
+vectorizer = pickle.load(open(Paths.GET_VECTORIZER_PKL, "rb"))
+model = pickle.load(open(Paths.GET_MODEL_PKL, "rb"))
 
 
 def main():
