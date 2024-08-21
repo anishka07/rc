@@ -1,23 +1,18 @@
 import streamlit as st
 from pypdf import PdfReader
-import pickle
-import os 
 
 from settings import Settings, text_transform, clean_resume
+from paths import Paths
 
-src_dir = os.path.abspath(os.getcwd())
-project_root = os.path.dirname(src_dir)
-model_pkl_path = os.path.join(project_root, "models/model.pkl")
-vectorizer_pkl_path = os.path.join(project_root, "models/vectorizer.pkl")
+vectorizer = Paths.GET_VECTORIZER_PKL
+model = Paths.GET_MODEL_PKL
 
-model = pickle.load(open(model_pkl_path, "rb"))
-vectorizer = pickle.load(open(vectorizer_pkl_path, "rb"))
 
 def main():
     st.title("Resume Classifier")
-    
+
     uploaded_file = st.file_uploader("Upload your resume", type=["txt", "pdf"])
-    
+
     if uploaded_file is not None:
         reader = PdfReader(uploaded_file)
         all_text = ""
@@ -33,6 +28,7 @@ def main():
 
         category_name = Settings.CATEGORY.get(prediction_id, "Unknown")
         st.write("Predicted Category: ", category_name)
+
 
 if __name__ == "__main__":
     main()
