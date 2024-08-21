@@ -2,9 +2,9 @@ from fastapi import APIRouter, HTTPException, UploadFile, File
 from pypdf import PdfReader
 import pickle
 
+from utils.settings import clean_resume, text_transform, Settings
 from app.models.schemas import PredictionResponse
 from utils.paths import Paths
-from utils.settings import *
 
 router = APIRouter()
 vectorizer = pickle.load(open(Paths.GET_VECTORIZER_PKL, "rb"))
