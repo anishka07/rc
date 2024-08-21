@@ -2,12 +2,13 @@ from fastapi import APIRouter, HTTPException, UploadFile, File
 from pypdf import PdfReader
 import pickle
 
-from app.helpers.tp_helpers import clean_resume, Settings, text_transform
 from app.models.schemas import PredictionResponse
+from utils.paths import Paths
+from utils.settings import *
 
 router = APIRouter()
-vectorizer = pickle.load(open("/Users/anishkamukherjee/Documents/resume_classifier/models/vectorizer.pkl", "rb"))
-model = pickle.load(open("/Users/anishkamukherjee/Documents/resume_classifier/models/model.pkl", "rb"))
+vectorizer = pickle.load(open(Paths.GET_VECTORIZER_PKL, "rb"))
+model = pickle.load(open(Paths.GET_MODEL_PKL, "rb"))
 
 
 @router.get("/hello")
