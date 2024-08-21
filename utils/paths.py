@@ -12,5 +12,5 @@ def get_project_dir():
 
 class Paths:
     GET_PROJECT_DIR = get_project_dir()
-    GET_MODEL_PKL = os.path.join(GET_PROJECT_DIR, "models/model.pkl")
-    GET_VECTORIZER_PKL = os.path.join(GET_PROJECT_DIR, "models/vectorizer.pkl")
+    GET_MODEL_PKL = os.path.join(GET_PROJECT_DIR, "ml_models/model.pkl")
+    GET_VECTORIZER_PKL = os.path.join(GET_PROJECT_DIR, "ml_models/vectorizer.pkl")
